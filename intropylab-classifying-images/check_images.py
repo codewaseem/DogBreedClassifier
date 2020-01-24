@@ -49,8 +49,6 @@ def main():
     # to check the accuracy of the classifier function
     answers_dic = get_pet_labels(args_dict['dir'])
 
-    print(answers_dic)
-
     # TODO: 4. Define classify_images() function to create the classifier
     # labels with the classifier function using in_arg.arch, comparing the
     # labels, and creating a dictionary of results (result_dic)
