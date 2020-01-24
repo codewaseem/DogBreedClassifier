@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # */AIPND/intropylab-classifying-images/check_images.py
-#                                                                             
+#
 # TODO: 0. Fill in your information in the programming header below
-# PROGRAMMER:
-# DATE CREATED:
-# REVISED DATE:             <=(Date Revised - if any)
-# REVISED DATE: 05/14/2018 - added import statement that imports the print 
+# PROGRAMMER: Waseem Ahmed
+# DATE CREATED: 24/01/2020
+# REVISED DATE:  24/01/2020           <=(Date Revised - if any)
+# REVISED DATE: 05/14/2018 - added import statement that imports the print
 #                           functions that can be used to check the lab
 # PURPOSE: Check images & report results: read them in, predict their
 #          content (classifier), compare prediction to actual value labels
@@ -24,32 +24,36 @@ import argparse
 from time import time, sleep
 from os import listdir
 
-# Imports classifier function for using CNN to classify images 
-from classifier import classifier 
+# Imports classifier function for using CNN to classify images
+# from classifier import classifier
 
-# Imports print functions that check the lab
-from print_functions_for_lab_checks import *
+# # Imports print functions that check the lab
+# from print_functions_for_lab_checks import *
 
 # Main program function defined below
+
+
 def main():
     # TODO: 1. Define start_time to measure total program runtime by
     # collecting start time
-    start_time = None
-    
+    start_time = time()
+
     # TODO: 2. Define get_input_args() function to create & retrieve command
     # line arguments
     in_arg = get_input_args()
-    
+
+    print(in_arg)
+
     # TODO: 3. Define get_pet_labels() function to create pet image labels by
     # creating a dictionary with key=filename and value=file label to be used
     # to check the accuracy of the classifier function
     answers_dic = get_pet_labels()
 
-    # TODO: 4. Define classify_images() function to create the classifier 
-    # labels with the classifier function using in_arg.arch, comparing the 
+    # TODO: 4. Define classify_images() function to create the classifier
+    # labels with the classifier function using in_arg.arch, comparing the
     # labels, and creating a dictionary of results (result_dic)
     result_dic = classify_images()
-    
+
     # TODO: 5. Define adjust_results4_isadog() function to adjust the results
     # dictionary(result_dic) to determine if classifier correctly classified
     # images as 'a dog' or 'not a dog'. This demonstrates if the model can
@@ -61,25 +65,24 @@ def main():
     # dictionary (results_stats_dic)
     results_stats_dic = calculates_results_stats()
 
-    # TODO: 7. Define print_results() function to print summary results, 
+    # TODO: 7. Define print_results() function to print summary results,
     # incorrect classifications of dogs and breeds if requested.
     print_results()
 
     # TODO: 1. Define end_time to measure total program runtime
     # by collecting end time
-    end_time = None
+    end_time = time()
 
     # TODO: 1. Define tot_time to computes overall runtime in
     # seconds & prints it in hh:mm:ss format
-    tot_time = None
+    tot_time = start_time - end_time
     print("\n** Total Elapsed Runtime:", tot_time)
 
 
-
-# TODO: 2.-to-7. Define all the function below. Notice that the input 
-# parameters and return values have been left in the function's docstrings. 
-# This is to provide guidance for achieving a solution similar to the 
-# instructor provided solution. Feel free to ignore this guidance as long as 
+# TODO: 2.-to-7. Define all the function below. Notice that the input
+# parameters and return values have been left in the function's docstrings.
+# This is to provide guidance for achieving a solution similar to the
+# instructor provided solution. Feel free to ignore this guidance as long as
 # you are able to achieve the desired outcomes with this lab.
 
 def get_input_args():
@@ -98,7 +101,16 @@ def get_input_args():
     Returns:
      parse_args() -data structure that stores the command line arguments object  
     """
-    pass
+
+    parser = argparse.ArgumentParser(description='Image Classification.')
+    parser.add_argument('--dir', type=str, default="pet_images/",
+                        help="Path to the pet image files")
+    parser.add_argument('--arch', type=str, default="resnet",
+                        help="Path to the pet image files")
+    parser.add_argument('--dogfile', type=str, default="dognames.txt",
+                        help="Path to the pet image files")
+
+    return parser.parse_args()
 
 
 def get_pet_labels():
@@ -172,7 +184,7 @@ def adjust_results4_isadog():
                 text file's name)
     Returns:
            None - results_dic is mutable data type so no return needed.
-    """           
+    """
     pass
 
 
@@ -231,11 +243,10 @@ def print_results():
                               False doesn't print anything(default) (bool) 
     Returns:
            None - simply printing results.
-    """    
+    """
     pass
 
-                
-                
+
 # Call to main function to run the program
 if __name__ == "__main__":
     main()
